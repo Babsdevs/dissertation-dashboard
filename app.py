@@ -158,19 +158,19 @@ def animated_counter(label, end_val, suffix="", prefix="",
 # ── Load data ─────────────────────────────────────────────────
 @st.cache_data
 def load_price_data():
-    df = pd.read_excel("data/price_data.xlsx")
+    df = pd.read_excel("price_data.xlsx")
     df['Date'] = pd.to_datetime(df['Date'])
     return df
 
 @st.cache_data
 def load_dmi_data():
-    df = pd.read_csv("data/DMI_IOD_data_2012_2023.csv")
+    df = pd.read_csv("DMI_IOD_data_2012_2023.csv")
     df['date'] = pd.to_datetime(df['date'])
     return df
 
 @st.cache_data
 def load_wti_data():
-    df = pd.read_csv("data/WTI_data.csv", skiprows=2)
+    df = pd.read_csv("WTI_data.csv", skiprows=2)
     df.columns = ['date', 'WTI']
     df['date'] = pd.to_datetime(df['date'])
     df = df[(df['date'] >= '2012-01-01') & (df['date'] <= '2023-12-31')]
@@ -485,7 +485,7 @@ elif page == "📊 Dataset Explorer":
     except Exception as e:
         st.error(f"Data load error: {e}")
         st.info("Ensure price_data.xlsx, DMI_IOD_data_2012_2023.csv "
-                "and WTI_data.csv are in the data/ folder.")
+                "and WTI_data.csv are in the repository root folder.")
 
 
 # ══════════════════════════════════════════════════════════════
